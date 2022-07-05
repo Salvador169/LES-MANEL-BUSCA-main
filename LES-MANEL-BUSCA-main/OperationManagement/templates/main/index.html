@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LES</title>
+    <style>
+        ul{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1  class="text-primary" style="text-align: center; padding: 1em">Parque - {{ parque.nome }}</h1>
+
+                </div>
+            </div>
+        </div>
+
+        {% include "main/includes/messages.html" %}
+
+        <div class="container">
+            <div class="row">
+                <h2 style="text-align: center">Lista de zonas</h2>
+                    {% for zona in zonas %}
+                    <div class="col-md-3" style="padding: 1em">
+                                <h2 class="text-center">Zona {{ zona.numero_da_zona }}</h2>
+                                <div class="h-90 text-center bg-light border border-dark rounded">
+                                    <br>
+                                    Lugares:  {{ zona.lugares }}
+                                    <br>
+                                     <div class="container-fluid text-center">
+                                         <a class="btn btn-primary" style="color: white;margin-bottom: 1em; margin-top: 1em" href="{% url 'OperationManagement:ver_lugares' parque_id=parque.id zona_id=zona.numero_da_zona %}">
+                                            Ver lugares
+                                         </a>
+                                     </div>
+                                    <div class="container-fluid text-center">
+                                        <a class="btn btn-success" style="color: white;margin-bottom: 1em; margin-top: 1em" href="{% url 'OperationManagement:associar_lugar' parque_id=parque.id zona_id=zona.numero_da_zona %}">
+                                            Associar lugar
+                                        </a>
+                                    </div>
+                                    <div class="container text-center">
+                                        <a class="btn btn-danger" style="margin-bottom: 1em" href="{% url 'OperationManagement:desassociar_lugar' parque_id=parque.id zona_id=zona.numero_da_zona %}">
+                                            Desassociar lugar
+                                        </a>
+                                </div>
+                            </div>
+                    {% endfor %}
+                <br>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                   <a href="{% url 'OperationManagement:operar_parque' %}">
+                       <button style="margin-top: 1em" class="btn btn-lg btn-primary">Voltar</button>
+                   </a>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
+{% endblock %}

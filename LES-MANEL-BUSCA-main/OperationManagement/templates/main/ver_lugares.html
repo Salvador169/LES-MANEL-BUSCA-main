@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LES</title>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{% url 'OperationManagement:index' parque_id=parque.id %}">
+                   <button style="margin-top: 1em; margin-left: 5%" class="btn btn-danger">Voltar</button>
+                </a>
+                <h1  class="text-primary" style="text-align: center">Zona - {{ zona.numero_da_zona }}</h1>
+              </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+            <div class="row">
+                <h2 style="text-align: center; padding: 2em">Lista de lugares</h2>
+
+                    {% for lugar in lugares %}
+                    <br>
+                        {% if lugar.estado == "Ocupado" %}
+                            <div class="col-md-2" style="padding: 1em">
+                                <div class="h-100 bg-light border border-dark rounded p-4">
+                                    Lugar {{ lugar.numero_do_lugar }}
+                                    <p style="color: red">Ocupado</p>
+                                    <a href="{% url 'OperationManagement:liberar_lugar' parque_id=parque.id lugar_id=lugar.numero_do_lugar %}">
+                                        Liberar lugar
+                                    </a>
+                                    <br>
+                                </div>
+                            </div>
+
+                        {% endif%}
+
+                        {% if lugar.estado == "Disponivel" %}
+                        <div class="col-md-2" style="padding: 1em">
+                            <div class="h-100 bg-light border border-dark rounded p-4">
+                                Lugar {{ lugar.numero_do_lugar }}
+                                <p style="color: green">Disponível</p>
+                                <a href="{% url 'OperationManagement:ocupar_lugar' parque_id=parque.id lugar_id=lugar.numero_do_lugar %}">
+                                    Ocupar lugar
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    {% endfor %}
+            </div>
+            <br>
+        </div>
+</body>
+</html>
+{% endblock %}

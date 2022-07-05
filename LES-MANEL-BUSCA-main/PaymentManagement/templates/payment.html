@@ -1,0 +1,21 @@
+{% include "base.html"%}
+{% block content %}
+<br/>
+<head>
+    <style>
+      form, a {
+          margin-left: 40%;
+      }
+    </style>
+</head>
+<h2 class="text-primary" style="text-align: center; padding: 1em">Pagamento com Visa:</h2>
+
+
+<form method="POST"> {% csrf_token %}
+    {{form.as_p}}
+    <p>{{price}}€</p>
+    <input class="btn btn-sm btn-primary" type="submit" value="Save"/>
+</form>
+{% endblock %}
+<br/>
+<a class="btn btn-sm btn-primary" href="{% url 'homepage' %}">Voltar à página principal</a>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LES</title>
+</head>
+<body>
+        <div class="container">
+            <h3 style="text-align: center; padding: 1em">Fazer reclamação</h3>
+        </div>
+
+        <div class="container-fluid">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="container" style="padding: 0.5em">
+                     {{ form.as_p }}
+                 </div>
+
+                <div class="container-fluid" style="padding: 2em">
+                    <a class="btn btn-danger" href="{% url 'OperationManagement:index' parque_id=parques.id %}" style="color: white; margin-right: 1em" type="submit">Voltar</a>
+                    <button class="btn btn-primary" href="{% url 'OperationManagement:index' parque_id=parques.id %}" type="submit">Enviar reclamação</button>
+                </div>
+                </form>
+        </div>
+</body>
+</html>
+{% endblock %}

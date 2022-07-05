@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LES</title>
+</head>
+<body>
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+
+                {% load crispy_forms_tags %}
+
+                <div class="container">
+                    <h3 class="text-primary" style="padding: 2em; text-align: center">Associando um lugar em {{ parques.nome }}</h3>
+                </div>
+
+                {% include "main/includes/messages.html" %}
+
+                <div class="row">
+                    <div class="text-center col-md-4">
+                    </div>
+                    <div class="text-center col-md-4">
+                        <div class="container-fluid pt-4 px-4">
+                            <div class="text-center rounded p-4">
+
+                            {{ form.as_p }}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center col-md-4">
+                    </div>
+                </div>
+
+                <div class="container-fluid" style="text-align: center; padding: 2em">
+                    <a class="btn btn-danger" href="{% url 'OperationManagement:index' parque_id=parques.id %}" style="color: white; margin-right: 1em" type="submit">Voltar</a>
+                    <button class="btn btn-primary" href="{% url 'OperationManagement:index' parque_id=parques.id %}" type="submit">Associar</button>
+                </div>
+                </form>
+        </div>
+
+</body>
+</html>
+{% endblock %}

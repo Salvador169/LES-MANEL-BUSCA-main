@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LES</title>
+
+</head>
+<body>
+    <h2 class="text-primary" style="text-align: center; padding: 1em">Escolha o o método de pagamento:</h2>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div style="margin-left:15%;" class="col-md-4 text-center">
+                    <img class="h-75 border border-dark rounded p-4" height="150px" width="300px" src="/image/visa.png">
+                    <h2><a href="{% url 'PaymentManagement:contrato-pay-card' id=id payid=payid %}">Visa</a></h2>
+            </div>
+            <div class="col-md-4 text-center">
+                <img class="h-75 border border-dark rounded p-4" height="150px" width="300px" src="/image/mb.png">
+                <h2><a href="{% url 'PaymentManagement:contrato-pay-reference' id=id payid=payid %}">Referência</a></h2>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}
